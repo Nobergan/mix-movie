@@ -1,0 +1,83 @@
+<ng-container *ngIf="filmDataObs$ | async as filmData">
+  <div class="film__container container">
+    <div class="film">
+      <!--Trailer-->
+      <div class="film__trailer" *ngIf="filmData.videoUrl; else noTrailer">
+        <iframe width="560" height="415" [src]="filmData.videoUrl | safe:'resourceUrl'"></iframe>
+      </div>
+      <!--Without trailer-->
+      <ng-template #noTrailer>
+        <div class="film__trailer-empty">
+          <iframe width="560" height="415" [src]=""></iframe>
+        </div>
+      </ng-template>
+      <!--Film info-->
+      <div class="film__wrap">
+        <div>
+          <img
+            src="../../../assets/images/icons/favourite-icon.svg"
+            class="film__favourite"
+            *ngIf="isAuthenticated"
+            (click)="addToFavourites(filmData.film)"
+            [class.is-hidden]="isFavourite"
+            [class.film__favourite--active]="isFavourite"
+            (mouseover)="onMouseOver($event)"
+            (mouseout)="onMouseOut($event)"
+          >
+          <img
+            src="../../../assets/images/icons/favourite-icon-active.svg"
+            class="film__favourite--active"
+            *ngIf="isAuthenticated"
+            [class.is-hidden]="!isFavourite"
+          >
+          <h2 class="film__title">{{ media_type === 'movie' ? filmData.film.title : filmData.film.name }}
+          </h2>
+          <p class="film__info-text"><span class="film__info-title">Рейтинги:</span> {{filmData.film.vote_average}} IMDB</p>
+          <p class="film__info-text"><span class="film__info-title">Дата виходу:</span> {{filmData.film.release_date}}</p>
+          <div class="film__info-genres-wrap">
+            <div class="film__info-title">Жанр:</div>
+            <div class="film__info-genres" *ngFor="let genre of filmData.film.genres">
+              <p class="film__info-text">{{genre?.name}}</p>
+            </div>
+          </div>
+          <p class="film__info-text"><span class="film__info-title">Тривалість:</span> {{filmData.film.runtime}}хв</p>
+          <p class="film__info-text"><span class="film__info-title">Дохід:</span> {{filmData.film.revenue}}$</p>
+          <p class="film__info-text"><span class="film__info-title">Оцінок:</span> {{filmData.film.vote_count}}</p>
+        </div>
+        <div>
+          <h3 class="film__about-title">Про що фильм "{{ media_type === 'movie' ? filmData.film.title : filmData.film.name }}":</h3>
+          <p class="film__about-text">{{filmData.film.overview}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--  Slider similar-->
+  <div class="container-sliders slider-similar">
+    <h4 class="slider-similar__title">Схоже</h4>
+    <app-films-similar [films]="filmData.similarFilms" [media_type]="media_type"></app-films-similar>
+  </div>
+
+  <!--  Reviews-->
+  <div class="container">
+    <div class="review__container">
+      <h4 class="review__title">Відгуки</h4>
+      <div class="review" *ngFor="let review of filmData.reviews">
+        <div *ngIf="review.author_details.avatar_path">
+          <img class="review__img" src='https://image.tmdb.org/t/p/w500{{ review.author_details.avatar_path }}' alt="avatar">
+        </div>
+        <div *ngIf="!review.author_details.avatar_path">
+          <img class="review__img" src='/assets/images/icons/empty-avatar.svg' alt="avatar">
+        </div>
+        <div class="review__wrap">
+          <div class="review__info-wrap">
+            <span class="review__username">{{ review.author_details.username }}</span>
+            <span class="review__date">{{ review.created_at | date:'dd.MM.yyyy' }}</span>
+          </div>
+          <p class="review__text">{{ review.content }}</p>
+          <a class="review__text-link" (click)="openAllReview($event)">Читати повністю</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

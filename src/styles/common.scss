@@ -1,0 +1,230 @@
+@import './mixins';
+
+body {
+  box-sizing: border-box;
+  @include font-rubik(400, 16px, false, rgba(255, 255, 255, 1));
+  background: rgba(19, 19, 21, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+.container {
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 30px;
+
+  @include media-mobile-size {
+    padding: 0 15px;
+  }
+}
+
+.container-sliders {
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 50px 30px 0;
+
+  @include media-laptop-size {
+    padding: 40px 30px 0;
+  }
+  @include media-mobile-size {
+    padding: 0 15px;
+  }
+  @include media-mobile-xs-size {
+    padding: 0 0 0 15px;
+  }
+}
+
+img {
+  display: block;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: rgb(177, 177, 177);
+  cursor: pointer;
+
+}
+
+svg {
+  vertical-align: baseline;
+}
+
+button {
+  @include flex(flex, center, space-between);
+  padding: 0;
+
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+button:focus,
+button:active {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.is-hidden {
+  display: none;
+}
+
+// Film cards in every category
+.category {
+  padding: 40px 0;
+  @include media-mobile-size {
+    padding: 20px 0;
+  }
+
+  &__title {
+    margin: 0 0 12px;
+    font-weight: 600;
+    font-size: 38px;
+    line-height: 1.3;
+    color: rgba(255, 255, 255, 1);
+    @include media-mobile-size {
+      font-size: 6.8vw;
+    }
+  }
+
+  &__text {
+    margin: 0 0 42px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(165, 161, 178, 1);
+    @include media-mobile-size {
+      font-size: 4.3vw;
+    }
+
+    & p {
+      margin: 0;
+    }
+    & p:first-of-type span {
+      color: rgba(140, 7, 60, 1);
+    }
+  }
+}
+
+.category__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-column-gap: 2vw;
+  grid-row-gap: 2vw;
+  @include media-laptop-size {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  @include media-mobile-size {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    grid-row-gap: 6vw;
+  }
+  @include media-landscape-size {
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    grid-row-gap: 6vw;
+  }
+}
+
+.category__item {
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+
+  &-img-wrap {
+    position: relative;
+  }
+
+  &-img {
+    width: 100%;
+    margin: 0 0 16px;
+    border-radius: 21px;
+    filter: brightness(80%);
+    @include media-mobile-size {
+      margin: 0 0 4px;
+    }
+  }
+
+  &-title {
+    margin: 0;
+    @include font-rubik(400, 14px, 1.3, rgba(255, 255, 255, 1));
+    @include media-mobile-size {
+      font-size: 3.2vw;
+    }
+  }
+
+  &-rate {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 11px 21px;
+    font-size: 12px;
+    background: rgba(28, 28, 31, 1);
+    border-radius: 0 20px;
+    @include media-mobile-size {
+      padding: 12px;
+      font-size: 2.5vw;
+    }
+
+    &-num {
+      margin: 0;
+    }
+
+    &-text {
+      margin: 0;
+    }
+  }
+
+  &-favourite {
+    position: absolute;
+    bottom: 19px;
+    left: 24px;
+    cursor: pointer;
+    @include media-mobile-size {
+      width: 12px;
+      bottom: 12px;
+      left: 16px;
+    }
+  }
+
+  &-favourite--active {
+    display: block;
+    position: absolute;
+    bottom: 19px;
+    left: 24px;
+    cursor: pointer;
+    @include media-mobile-size {
+      width: 12px;
+      bottom: 12px;
+      left: 16px;
+    }
+
+    &.is-hidden {
+      display: none;
+    }
+  }
+
+  &-trash {
+    position: absolute;
+    bottom: 20px;
+    right: 16px;
+    width: 24px;
+    cursor: pointer;
+    @include media-mobile-size {
+      width: 18px;
+      bottom: 12px;
+      right: 16px;
+    }
+  }
+}

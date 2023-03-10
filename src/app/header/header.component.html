@@ -1,0 +1,103 @@
+<header class="header">
+  <div class="container">
+    <div class="header-desk">
+      <div class="header__wrap">
+        <a routerLink="/main">
+          <img src="../../assets/images/logo.svg" alt="Mix Movie" class="header__logo">
+        </a>
+        <nav class="header__nav">
+          <ul class="header__nav-list">
+            <li routerLinkActive="header__link-active" class="header__nav-item">
+              <a routerLink="/main">Головна</a>
+            </li>
+            <li routerLinkActive="header__link-active" class="header__nav-item">
+              <a routerLink="/movie">Фільми</a>
+            </li>
+            <li routerLinkActive="header__link-active" class="header__nav-item">
+              <a routerLink="/tv">Серіали</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <app-films-search></app-films-search>
+      <ul class="header__list-right">
+        <li
+          routerLinkActive="header__link-active"
+          class="header__list-right-item"
+          *ngIf="isAuthenticated">
+          <a routerLink="/favourites">Обране</a>
+        </li>
+        <li
+          class="header__list-right-item logout"
+          *ngIf="isAuthenticated"
+          (click)="onLogout()">
+          Вийти
+        </li>
+        <li
+          class="header__list-right-item"
+          (click)="toLogIn()"
+          *ngIf="!isAuthenticated">
+          Вхід
+        </li>
+        <li
+          class="header__list-right-item register"
+          (click)="toSignUp()"
+          *ngIf="!isAuthenticated">
+          Реєстрація
+        </li>
+      </ul>
+    </div>
+
+    <!--Mobile header-->
+    <div class="header-mob">
+      <a routerLink="/main">
+        <img src="../../assets/images/logo.svg" alt="Mix Movie" class="header__logo">
+      </a>
+      <app-films-search></app-films-search>
+      <button type="button" class="header-mob__button" (click)="toggleMenu()">
+        <img src="../assets/images/icons/icon-menu.svg" alt="" class="header-mob__button-menu" [class.hidden]="menuOpen">
+        <img src="../assets/images/icons/icon-cross.svg" alt="" class="header-mob__button-cross" [class.hidden]="!menuOpen">
+      </button>
+      <nav class="header__nav" [class.open]="menuOpen">
+        <ul class="header__nav-list" (click)="closeMenu()">
+          <li routerLinkActive="header__link-active" class="header__nav-item">
+            <a routerLink="/main">Головна</a>
+          </li>
+          <li routerLinkActive="header__link-active" class="header__nav-item">
+            <a routerLink="/movie">Фільми</a>
+          </li>
+          <li routerLinkActive="header__link-active" class="header__nav-item">
+            <a routerLink="/tv">Серіали</a>
+          </li>
+        </ul>
+        <ul class="header__list-right" (click)="closeMenu()">
+          <li
+            routerLinkActive="header__link-active"
+            class="header__list-right-item"
+            *ngIf="isAuthenticated">
+            <a routerLink="/favourites">Обране</a>
+          </li>
+          <li
+            class="header__list-right-item logout"
+            *ngIf="isAuthenticated"
+            (click)="onLogout()">
+            Вийти
+          </li>
+          <li
+            class="header__list-right-item"
+            (click)="toLogIn()"
+            *ngIf="!isAuthenticated">
+            Вхід
+          </li>
+          <li
+            class="header__list-right-item register"
+            (click)="toSignUp()"
+            *ngIf="!isAuthenticated">
+            Реєстрація
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+

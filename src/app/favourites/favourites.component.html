@@ -1,0 +1,26 @@
+<div class="favourites">
+  <div class="container">
+    <h2 class="category__title">Мої закладки</h2>
+    <div class="category__wrap">
+      <ul class="category__list">
+        <li class="category__item" *ngFor="let film of favouritesFilms" (click)="onLoadFilm(film.id, film)">
+          <div class="category__item-img-wrap">
+            <img [src]="film.poster_path" alt="{{ film.title }}" class="category__item-img">
+            <img
+              src="../../../assets/images/icons/icon-trash.svg"
+              class="category__item-trash"
+              (mouseover)="onMouseOver(film)"
+              (mouseout)="onMouseOut(film)"
+              (click)="removeFavourite(film.id)"
+              [attr.data-id]="film.id">
+          </div>
+          <p class="category__item-title">{{ film.title ? film.title : film.name }}</p>
+          <div class="category__item-rate">
+            <p class="category__item-rate-num">{{ film.vote_average }}</p>
+            <p class="category__item-rate-text">IMDb</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

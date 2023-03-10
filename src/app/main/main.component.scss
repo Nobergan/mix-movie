@@ -1,0 +1,50 @@
+@import '../../styles/mixins';
+
+.main {
+  padding: 0 0 64px;
+  @include media-mobile-size {
+    padding: 0 0 30px;
+  }
+
+  &__category-title {
+    margin: 0 0 34px 37px;
+    @include font-rubik(600, 24px, 1.3, rgba(255, 255, 255, 1));
+
+    @include media-mobile-size {
+      margin: 0 0 10px;
+      font-size: 5.5vw;
+      text-align: center;
+    }
+    @include media-mobile-xs-size {
+      font-size: 7.5vw;
+    }
+  }
+
+  &__description-title {
+    margin: 0 0 24px;
+    @include font-rubik(600, 24px, 1.3, rgba(255, 255, 255, 1));
+
+    @include media-mobile-size {
+      margin: 0 0 14px;
+      text-align: center;
+    }
+  }
+
+  &__description-text {
+    @include font-rubik(400, 18px, 1.9, rgba(255, 255, 255, 1));
+
+    @include media-mobile-size {
+      font-size: 3.8vw;
+    }
+  }
+
+  & &__description-text:first-of-type {
+    margin: 0 0 46px;
+
+    @include media-mobile-size {
+      margin: 0 0 30px;
+    }
+  }
+}
+
+

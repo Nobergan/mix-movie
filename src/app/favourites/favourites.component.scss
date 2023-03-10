@@ -1,0 +1,17 @@
+@import '../../styles/mixins';
+
+.favourites {
+  min-height: 100vh;
+  padding: 40px 0;
+  @include media-mobile-size {
+    padding: 20px 0;
+  }
+
+  & .container {
+    margin-top: auto;
+  }
+
+  & .category__item:first-of-type {
+    display: none;
+  }
+}

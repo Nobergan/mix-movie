@@ -1,0 +1,69 @@
+<div class="category">
+  <div class="container">
+    <h2 class="category__title">Дивитись {{ title }} онлайн</h2>
+    <div class="category__text">
+      <p>Переглядай улюблені {{ title }} на платформі <span>Mix Movie</span></p>
+      <p>Ми зібрали найкращі фільми і серіали на нашому сайті. Обирай потрібні тоіб фільтри, додавай в обрані і насолоджуйся переглядом.</p>
+    </div>
+
+    <!--Category list-->
+    <ul class="category__list">
+      <!--Category item-->
+      <li
+        class="category__item"
+        *ngFor="let film of films | paginate: {itemsPerPage: 20, currentPage: currentPage, totalItems: totalItems}"
+        (click)="onLoadFilm(film.id)"
+      >
+        <!--Spinner-->
+        <div *ngIf="isLoading">
+          <app-loading-spinner></app-loading-spinner>
+        </div>
+
+        <!--No spinner-->
+        <div class="category__item-img-wrap" *ngIf="!isLoading">
+          <img
+            src="https://image.tmdb.org/t/p/w500/{{ film.poster_path }}"
+            alt="{{ media_type === 'movie' ? film.title : film.name }}"
+            class="category__item-img"
+          >
+          <!--Favourite icon-->
+          <img
+            src="../../../assets/images/icons/favourite-icon.svg"
+            class="category__item-favourite"
+            *ngIf="isAuthenticated"
+            (click)="addToFavourites($event, film)"
+            [class.is-hidden]="isFilmInFavourites(film)"
+            (mouseover)="onMouseOver($event)"
+            (mouseout)="onMouseOut($event)"
+          >
+          <!--Favourite icon active-->
+          <img
+            src="../../../assets/images/icons/favourite-icon-active.svg"
+            class="category__item-favourite--active"
+            *ngIf="isAuthenticated"
+            [class.is-hidden]="!isFilmInFavourites(film)"
+          >
+          <!--Rating-->
+          <div class="category__item-rate">
+            <p class="category__item-rate-num">{{ film.vote_average }}</p>
+            <p class="category__item-rate-text">IMDb</p>
+          </div>
+        </div>
+        <!--Title-->
+        <p class="category__item-title">{{ media_type === 'movie' ? film.title : film.name }}</p>
+      </li>
+    </ul>
+
+    <!--Pagination-->
+    <div class="pagination">
+      <pagination-controls
+        (pageChange)="onPageChange($event)"
+        [previousLabel]="labels.previousLabel"
+        [nextLabel]="labels.nextLabel"
+        [maxSize]="6"
+      ></pagination-controls>
+    </div>
+
+  </div>
+
+</div>

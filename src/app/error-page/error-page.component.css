@@ -1,0 +1,10 @@
+.container {
+  height: 73vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error__message {
+  margin: 0 0 80px;
+}

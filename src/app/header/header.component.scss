@@ -1,0 +1,213 @@
+@import '../../styles/mixins';
+
+.header {
+  position: relative;
+  padding: 20px 0;
+
+  &-desk {
+    @include flex(flex, center, space-between);
+    @include media-tablet-size {
+      display: none;
+    }
+  }
+
+  &__wrap {
+    @include flex(flex, center, false);
+  }
+
+  &__logo {
+    cursor: pointer;
+
+    @include media-mobile-size {
+      width: 26vw;
+    }
+  }
+
+  &__nav {
+    margin: 0 0 0 82px;
+    @include media-laptop-size {
+      margin: 0 0 0 30px;
+    }
+
+    &-list {
+      @include flex(flex, center, false);
+    }
+
+    &-item {
+      position: relative;
+      @include font-rubik(false, 14px, 1.3, rgba(177, 177, 177, 1));
+      cursor: pointer;
+      &:not(:last-child) {
+        margin: 0 54px 0 0;
+      }
+      &:hover a,
+      &:focus a,
+      &:active a {
+        color: rgba(255, 255, 255, 1);
+      }
+    }
+  }
+
+  &__list-right {
+    @include flex(flex, center, false);
+
+    &-item {
+      position: relative;
+      cursor: pointer;
+    }
+
+    &-item:nth-child(1) {
+      margin: 0 56px 0 0;
+      @include font-rubik(false, 14px, 1.3, rgba(177, 177, 177, 1));
+
+      @include media-laptop-size {
+        margin: 0 30px 0 0;
+      }
+    }
+
+    &-item.logout {
+      padding: 8px 26px;
+      margin: 0 44px 0 0;
+      @include font-rubik(false, 14px, 1.3, rgba(255, 255, 255, 1));
+      background: linear-gradient(90deg, #8C073C 46.67%, #A80638 102.8%);
+      border-radius: 10px;
+    }
+
+    &-item:nth-child(3) {
+      margin: 0 44px 0 0;
+      @include font-rubik(false, 14px, 1.3, rgba(255, 255, 255, 1));
+    }
+
+    &-item.register {
+      padding: 8px 26px;
+      @include font-rubik(false, 14px, 1.3, rgba(255, 255, 255, 1));
+      background: linear-gradient(90deg, #8C073C 46.67%, #A80638 102.8%);
+      border-radius: 10px;
+    }
+  }
+
+  &__link-active {
+    & a {
+      color: rgb(177, 177, 177);
+    }
+
+    &:after {
+      position: absolute;
+      left: 50%;
+      bottom: -6px;
+      transform: translate(-50%);
+      content: '';
+      height: 2px;
+      width: 130%;
+      background: rgb(140, 7, 60);
+    }
+  }
+
+  //Mobile header
+  &-mob {
+    display: none;
+    @include media-tablet-size {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    & .header__nav {
+      position: absolute;
+      right: -30px;
+      top: 84px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      transform: translateX(100%);
+      transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1), opacity 350ms cubic-bezier(0.4, 0, 0.2, 1);
+      width: 60%;
+      height: 40vh;
+      padding: 40px;
+      margin: 0;
+      background: rgba(19, 19, 21, .99);
+      border-top: 1px solid rgba(255, 255, 255, .5);
+      border-bottom: 1px solid rgba(255, 255, 255, .5);
+      border-left: 1px solid rgba(255, 255, 255, .5);
+      border-radius: 4px 0 0 4px;
+      z-index: 20;
+      @include media-mobile-size {
+        right: -15px;
+        top: 52px;
+        width: 108%;
+        height: 50vh;
+      }
+      @include media-mobile-xs-size {
+        height: 70vh;
+      }
+      @include media-landscape-size {
+        height: 70vh;
+        padding: 20px 40px;
+      }
+
+      &.open {
+        transform: translateX(0%);
+        opacity: 1;
+      }
+
+      &-list {
+        display: block;
+      }
+
+      &-item {
+        font-size: 20px;
+        text-align: center;
+      }
+
+      &-item:not(:last-child) {
+        margin: 0 auto 30px;
+      }
+    }
+
+    & .header__list-right {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0 0;
+
+      &-item {
+        font-size: 16px;
+        text-align: center;
+
+        &.logout {
+          margin: 0;
+        }
+      }
+    }
+
+    & .header__link-active {
+      &:after {
+        width: 100%;
+        bottom: -2px;
+      }
+    }
+
+    &__button-menu {
+      width: 40px;
+      @include media-mobile-size {
+        height: 30px;
+      }
+
+      &.hidden {
+        display: none;
+      }
+    }
+
+    &__button-cross {
+      width: 40px;
+      @include media-mobile-size {
+        height: 30px;
+      }
+
+      &.hidden {
+        display: none;
+      }
+    }
+  }
+}

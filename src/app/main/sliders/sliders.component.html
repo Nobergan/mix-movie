@@ -1,0 +1,9 @@
+<swiper
+  [config]="swiperConfig"
+  class="slider">
+  <ng-template swiperSlide *ngFor="let filmItem of films">
+    <app-sliders-items
+      [film]="filmItem"
+      [routeType]="routeType"></app-sliders-items>
+  </ng-template>
+</swiper>

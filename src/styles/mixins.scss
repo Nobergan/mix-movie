@@ -1,0 +1,46 @@
+//Media
+@mixin media-laptop-size {
+  @media screen and (max-width: 1440px - 0.1px) {
+    @content;
+  }
+}
+
+@mixin media-tablet-size {
+  @media screen and (max-width: 920px - 0.1px) {
+    @content;
+  }
+}
+
+@mixin media-mobile-size {
+  @media screen and (max-width: 480px - 0.1px) {
+    @content;
+  }
+}
+
+@mixin media-mobile-xs-size {
+  @media screen and (max-width: 321px - 0.1px) {
+    @content;
+  }
+}
+
+@mixin media-landscape-size {
+  @media screen and (orientation: landscape) and (max-height: 420px) and (min-aspect-ratio: 13/9) {
+    @content;
+  }
+}
+
+//Fonts
+@mixin font-rubik($weight: false, $size: false, $lh: false, $color: false) {
+  font-family: 'Rubik', sans-serif;
+  @if $weight { font-weight: $weight; }
+  @if $size { font-size: $size; }
+  @if $lh { line-height: $lh; }
+  @if $color { color: $color; }
+}
+
+//Fonts
+@mixin flex($display: false, $ai: false, $jc: false) {
+  @if $display { display: $display; }
+  @if $ai { align-items: $ai; }
+  @if $jc { justify-content: $jc; }
+}

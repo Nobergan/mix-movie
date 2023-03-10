@@ -1,0 +1,26 @@
+<div class="slide" (click)="onLoadFilm(film.id)">
+  <div class="slide__img-wrap">
+    <img src="https://image.tmdb.org/t/p/w500/{{ film.poster_path }}" alt="{{ film.title }}" class="slide__img">
+    <img
+      src="../../../assets/images/icons/favourite-icon.svg"
+      class="slide__favourite"
+      *ngIf="isAuthenticated"
+      (click)="addToFavourites($event, film)"
+      [class.is-hidden]="isFilmInFavourites(film)"
+      (mouseover)="onMouseOver($event)"
+      (mouseout)="onMouseOut($event)"
+    >
+    <!--Favourite icon active-->
+    <img
+      src="../../../assets/images/icons/favourite-icon-active.svg"
+      class="slide__favourite"
+      *ngIf="isAuthenticated"
+      [class.is-hidden]="!isFilmInFavourites(film)"
+    >
+  </div>
+  <p class="slide__title">{{ film.title }}</p>
+  <div class="slide__rate">
+    <p class="slide__rate-num">{{ film.vote_average }}</p>
+    <p class="slide__rate-text">IMDb</p>
+  </div>
+</div>
