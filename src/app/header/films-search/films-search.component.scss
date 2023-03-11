@@ -16,7 +16,6 @@
       font-size: 2.5vw;
     }
     @include media-mobile-size {
-      width: 40vw;
       height: 26px;
       font-size: 4vw;
     }
@@ -55,6 +54,7 @@
     width: 20vw;
     padding: 5px;
     overflow-y: scroll;
+    overflow-x: hidden;
     background: rgba(19, 19, 21, 1);
     border: 1px solid rgba(255, 255, 255, 1);
     border-radius: 4px;
@@ -64,7 +64,6 @@
     }
 
     @include media-mobile-size {
-      width: 50vw;
       height: 200px;
     }
 
