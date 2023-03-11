@@ -9,19 +9,19 @@
     <img src="./assets/images/logo.svg" alt="Mix Movie" class="modal__logo">
     <form class="form" #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm)">
       <div class="form__input-wrap">
-        <label for="email" class="form__input-label">E-mail</label>
+        <label for="email" class="form__input-label">E-mail*</label>
         <input
           class="form__input"
           type="email"
           id="email"
           ngModel
           name="email"
-          placeholder="+380"
+          placeholder="email@address.com"
           required
           email>
       </div>
       <div class="form__input-wrap">
-        <label for="password" class="form__input-label">Пароль</label>
+        <label for="password" class="form__input-label">Пароль*</label>
         <input
           class="form__input"
           type="password"

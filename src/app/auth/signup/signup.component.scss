@@ -19,8 +19,9 @@
     background: rgba(0, 0, 0, 1);
     border: 1px solid rgba(255, 0, 0, 1);
     border-radius: 4px;
+    z-index: 1;
     @include media-mobile-size {
-      top: 104px;
+      top: 23vw;
     }
   }
 
