@@ -15,7 +15,7 @@
       <div class="film__wrap">
         <div>
           <img
-            src="../../../assets/images/icons/favourite-icon.svg"
+            src="./assets/images/icons/favourite-icon.svg"
             class="film__favourite"
             *ngIf="isAuthenticated"
             (click)="addToFavourites(filmData.film)"
@@ -25,7 +25,7 @@
             (mouseout)="onMouseOut($event)"
           >
           <img
-            src="../../../assets/images/icons/favourite-icon-active.svg"
+            src="./assets/images/icons/favourite-icon-active.svg"
             class="film__favourite--active"
             *ngIf="isAuthenticated"
             [class.is-hidden]="!isFavourite"

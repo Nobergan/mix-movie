@@ -28,7 +28,7 @@
           >
           <!--Favourite icon-->
           <img
-            src="../../../assets/images/icons/favourite-icon.svg"
+            src="./assets/images/icons/favourite-icon.svg"
             class="category__item-favourite"
             *ngIf="isAuthenticated"
             (click)="addToFavourites($event, film)"
@@ -38,7 +38,7 @@
           >
           <!--Favourite icon active-->
           <img
-            src="../../../assets/images/icons/favourite-icon-active.svg"
+            src="./assets/images/icons/favourite-icon-active.svg"
             class="category__item-favourite--active"
             *ngIf="isAuthenticated"
             [class.is-hidden]="!isFilmInFavourites(film)"

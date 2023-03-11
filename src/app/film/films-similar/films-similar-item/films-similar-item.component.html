@@ -2,7 +2,7 @@
   <div class="slide__img-wrap">
     <img src="https://image.tmdb.org/t/p/w500/{{ film.poster_path }}" alt="{{ media_type === 'movie' ? film.title : film.name }}" class="slide__img">
     <img
-      src="../../../assets/images/icons/favourite-icon.svg"
+      src="./assets/images/icons/favourite-icon.svg"
       class="slide__favourite"
       *ngIf="isAuthenticated"
       (click)="addToFavourites($event, film)"
@@ -12,7 +12,7 @@
     >
     <!--Favourite icon active-->
     <img
-      src="../../../assets/images/icons/favourite-icon-active.svg"
+      src="./assets/images/icons/favourite-icon-active.svg"
       class="slide__favourite--active"
       *ngIf="isAuthenticated"
       [class.is-hidden]="!isFilmInFavourites(film)"
