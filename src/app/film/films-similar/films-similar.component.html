@@ -2,7 +2,7 @@
   [config]="swiperConfig"
   class="slider"
 >
-  <ng-template class="similar__swiper" swiperSlide *ngFor="let filmItem of films" >
+  <ng-template swiperSlide *ngFor="let filmItem of films" >
     <app-films-similar-item
       [film]="filmItem"
     ></app-films-similar-item>

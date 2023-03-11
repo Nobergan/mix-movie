@@ -10,7 +10,6 @@ export class CategoryFilmsComponent {
   films: CategoryFilm[];
   media_type = 'movie';
   period = 'primary_release_date.gte=2010-01-01&primary_release_year=2010';
-  routeType = 'movie'
   title = 'фільми'
 }
 

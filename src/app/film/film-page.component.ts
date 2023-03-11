@@ -5,7 +5,7 @@ import { map, switchMap, tap } from "rxjs/operators";
 
 import { FilmsService } from "../shared/services/films.service";
 import { Film } from "../shared/models/film.model";
-import { DataStorageService } from "../shared/data-storage.service";
+import { DataStorageService } from "../shared/services/data-storage.service";
 import { FilmReviews } from "../shared/models/reviews.model";
 import {AuthService} from "../auth/auth.service";
 
@@ -74,7 +74,6 @@ export class FilmPageComponent implements OnInit, OnDestroy {
       this.isFavourite = this.isFilmInFavourites(this.filmData$.value.film);
     }
   }
-
 
   openAllReview(e) {
     const reviewBtn = document.querySelectorAll(".review__text-link");

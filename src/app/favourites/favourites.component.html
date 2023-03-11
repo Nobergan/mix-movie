@@ -6,6 +6,7 @@
         <li class="category__item" *ngFor="let film of favouritesFilms" (click)="onLoadFilm(film.id, film)">
           <div class="category__item-img-wrap">
             <img [src]="film.poster_path" alt="{{ film.title }}" class="category__item-img">
+            <!--Delete from favourites-->
             <img
               src="./assets/images/icons/icon-trash.svg"
               class="category__item-trash"

@@ -3,10 +3,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 
 import { CategoryFilm } from "../shared/models/category-film.model";
-import { DataStorageService } from "../shared/data-storage.service";
+import { DataStorageService } from "../shared/services/data-storage.service";
 import { AuthService } from "../auth/auth.service";
 import { FilmsService } from "../shared/services/films.service";
-import {Film} from "../shared/models/film.model";
 
 const INITIAL_PAGE = 1;
 
@@ -19,7 +18,6 @@ export class CategoriesComponent implements OnInit {
   @Input() films: CategoryFilm[];
   @Input() media_type: string;
   @Input() period: string;
-  @Input() routeType: string;
   @Input() title: string;
   currentPage = INITIAL_PAGE;
   totalPages: number;
@@ -64,7 +62,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   onLoadFilm(id) {
-    this.router.navigate([`/${this.routeType}`, id], {relativeTo: this.route});
+    this.router.navigate([`/${this.media_type}`, id], {relativeTo: this.route});
   }
 
   onPageChange(event: number) {
@@ -74,7 +72,7 @@ export class CategoriesComponent implements OnInit {
 
   addToFavourites(e, film) {
     e.stopPropagation();
-    this.filmsService.addToFavourites(e, film, this.routeType);
+    this.filmsService.addToFavourites(e, film, this.media_type);
   }
 
   removeFromFavourites(e, film: CategoryFilm) {

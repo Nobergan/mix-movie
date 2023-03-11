@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { map, tap } from "rxjs/operators";
 import { NgForm } from "@angular/forms";
 
-import { DataStorageService } from "../../shared/data-storage.service";
+import { DataStorageService } from "../../shared/services/data-storage.service";
 import { Film } from "../../shared/models/film.model";
 
 @Component({

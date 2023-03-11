@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { environment } from "../../environments/environment";
+import { environment } from "../../../environments/environment";
 import { Observable } from "rxjs";
 
 @Injectable({providedIn: "root"})
@@ -34,6 +34,7 @@ export class DataStorageService {
   fetchFilms(media_type, number, period):Observable<any> {
     return this.http.get(`https://api.themoviedb.org/3/discover/${media_type}/?api_key=${this.tmdbApiKey}&page=${number}&${period}&language=uk`);
   }
+
   searchFilms(query: string): Observable<any> {
     return this.http.get(`https://api.themoviedb.org/3/search/multi?api_key=${this.tmdbApiKey}&query=${query}&language=uk`);
   }

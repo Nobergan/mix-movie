@@ -6,7 +6,6 @@ import { FormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
-import { MainSliderComponent } from "./main/main-slider/main-slider.component";
 import { HeaderComponent } from "./header/header.component";
 import { SlidersComponent } from './main/sliders/sliders.component';
 import { SlidersItemsComponent } from './main/sliders/sliders-items/sliders-items.component';
@@ -37,7 +36,6 @@ import { NgxPaginationModule } from "ngx-pagination";
     MainComponent,
     CategoryFilmsComponent,
     FilmPageComponent,
-    MainSliderComponent,
     FavouritesComponent,
     CategorySeriesComponent,
     SafePipe,

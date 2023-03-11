@@ -3,7 +3,7 @@ import { Subscription } from "rxjs";
 import { map, tap } from "rxjs/operators";
 
 import { Film } from "../../shared/models/film.model";
-import { DataStorageService } from "../../shared/data-storage.service";
+import { DataStorageService } from "../../shared/services/data-storage.service";
 import { FilmsService } from "../../shared/services/films.service";
 
 // import Swiper core and required modules
