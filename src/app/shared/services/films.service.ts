@@ -13,13 +13,19 @@ export class FilmsService {
     this.favouritesFilms = favourites ? JSON.parse(favourites) : [];
   }
 
-  addToFavourites(film: CategoryFilm) {
+  addToFavourites(e, film: CategoryFilm, routeType: string) {
     const isFilmAlreadyInFavourites = this.favouritesFilms.some(f => f.id === film.id);
     if (!isFilmAlreadyInFavourites) {
-      const favouriteFilm = {...film};
+      const favouriteFilm = { ...film, type: routeType };
+      favouriteFilm.poster_path = `https://image.tmdb.org/t/p/w500/${film.poster_path}`;
       this.favouritesFilms.push(favouriteFilm);
       localStorage.setItem('favourites', JSON.stringify(this.favouritesFilms));
     }
+
+    const favouriteItem = e.target as HTMLElement;
+    favouriteItem.classList.toggle('is-hidden');
+    const favouriteItemActive = favouriteItem.nextElementSibling as HTMLElement;
+    favouriteItemActive.classList.toggle('is-hidden');
   }
 
   getFavouritesFilms() {
@@ -32,5 +38,15 @@ export class FilmsService {
       this.favouritesFilms.splice(filmIndex, 1);
       localStorage.setItem('favourites', JSON.stringify(this.favouritesFilms));
     }
+  }
+
+  onMouseOver(event: MouseEvent) {
+    const img = event.target as HTMLImageElement;
+    img.src = './assets/images/icons/favourite-icon-active.svg';
+  }
+
+  onMouseOut(event: MouseEvent) {
+    const img = event.target as HTMLImageElement;
+    img.src = './assets/images/icons/favourite-icon.svg';
   }
 }

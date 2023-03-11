@@ -7,8 +7,8 @@
       *ngIf="isAuthenticated"
       (click)="addToFavourites($event, film)"
       [class.is-hidden]="isFilmInFavourites(film)"
-      (mouseover)="onMouseOver($event)"
-      (mouseout)="onMouseOut($event)"
+      (mouseover)="onMouseOverFavourite($event)"
+      (mouseout)="onMouseOutFavourite($event)"
     >
     <!--Favourite icon active-->
     <img
@@ -16,6 +16,7 @@
       class="slide__favourite"
       *ngIf="isAuthenticated"
       [class.is-hidden]="!isFilmInFavourites(film)"
+      (click)="removeFromFavourites($event, film)"
     >
   </div>
   <p class="slide__title">{{ film.title }}</p>

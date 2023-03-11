@@ -18,17 +18,18 @@
             src="./assets/images/icons/favourite-icon.svg"
             class="film__favourite"
             *ngIf="isAuthenticated"
-            (click)="addToFavourites(filmData.film)"
+            (click)="addToFavourites($event, filmData.film)"
             [class.is-hidden]="isFavourite"
-            [class.film__favourite--active]="isFavourite"
-            (mouseover)="onMouseOver($event)"
-            (mouseout)="onMouseOut($event)"
+            [class.film__favourite--active]="!isFavourite"
+            (mouseover)="onMouseOverFavourite($event)"
+            (mouseout)="onMouseOutFavourite($event)"
           >
           <img
             src="./assets/images/icons/favourite-icon-active.svg"
             class="film__favourite--active"
             *ngIf="isAuthenticated"
             [class.is-hidden]="!isFavourite"
+            (click)="removeFromFavourites($event, filmData.film)"
           >
           <h2 class="film__title">{{ media_type === 'movie' ? filmData.film.title : filmData.film.name }}
           </h2>

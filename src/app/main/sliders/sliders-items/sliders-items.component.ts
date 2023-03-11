@@ -31,22 +31,12 @@ export class SlidersItemsComponent implements OnInit, OnDestroy {
 
   addToFavourites(e, film) {
     e.stopPropagation();
-    film.type = this.routeType;
-    console.log(film.type)
-    const favouriteFilm = { ...film, type: film.type };
-    favouriteFilm.poster_path = `https://image.tmdb.org/t/p/w500/${film.poster_path}`;
+    this.filmsService.addToFavourites(e, film, this.routeType);
+  }
 
-    this.filmsService.addToFavourites(favouriteFilm);
-
-    const favouriteItem = document.querySelectorAll(".film__item-favourite");
-    const favouriteItemActive = document.querySelectorAll(".film__item-favourite--active");
-
-    favouriteItem.forEach((item, index) => {
-      if (e.target === item) {
-        item.classList.toggle('is-hidden');
-        favouriteItemActive[index].classList.toggle('is-hidden');
-      }
-    });
+  removeFromFavourites(e, film: Film) {
+    e.stopPropagation();
+    this.filmsService.removeFromFavourites(film.id);
   }
 
   onLoadFilm(id) {
@@ -57,14 +47,12 @@ export class SlidersItemsComponent implements OnInit, OnDestroy {
     return this.filmsService.getFavouritesFilms().some(f => f.id === film.id);
   }
 
-  onMouseOver(event: MouseEvent) {
-    const img = event.target as HTMLImageElement;
-    img.src = './assets/images/icons/favourite-icon-active.svg';
+  onMouseOverFavourite(event: MouseEvent) {
+    this.filmsService.onMouseOver(event);
   }
 
-  onMouseOut(event: MouseEvent) {
-    const img = event.target as HTMLImageElement;
-    img.src = './assets/images/icons/favourite-icon.svg';
+  onMouseOutFavourite(event: MouseEvent) {
+    this.filmsService.onMouseOut(event);
   }
 
   ngOnDestroy() {

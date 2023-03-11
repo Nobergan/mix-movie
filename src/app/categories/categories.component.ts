@@ -6,6 +6,7 @@ import { CategoryFilm } from "../shared/models/category-film.model";
 import { DataStorageService } from "../shared/data-storage.service";
 import { AuthService } from "../auth/auth.service";
 import { FilmsService } from "../shared/services/films.service";
+import {Film} from "../shared/models/film.model";
 
 const INITIAL_PAGE = 1;
 
@@ -73,35 +74,24 @@ export class CategoriesComponent implements OnInit {
 
   addToFavourites(e, film) {
     e.stopPropagation();
-    film.type = this.routeType;
-    const favouriteFilm = { ...film, type: film.type };
-    favouriteFilm.poster_path = `https://image.tmdb.org/t/p/w500/${film.poster_path}`;
+    this.filmsService.addToFavourites(e, film, this.routeType);
+  }
 
-    this.filmsService.addToFavourites(favouriteFilm);
-
-    const favouriteItem = document.querySelectorAll(".film__item-favourite");
-    const favouriteItemActive = document.querySelectorAll(".film__item-favourite--active");
-
-    favouriteItem.forEach((item, index) => {
-      if (e.target === item) {
-        item.classList.toggle('is-hidden');
-        favouriteItemActive[index].classList.toggle('is-hidden');
-      }
-    });
+  removeFromFavourites(e, film: CategoryFilm) {
+    e.stopPropagation();
+    this.filmsService.removeFromFavourites(film.id);
   }
 
   isFilmInFavourites(film) {
     return this.filmsService.getFavouritesFilms().some(f => f.id === film.id);
   }
 
-  onMouseOver(event: MouseEvent) {
-    const img = event.target as HTMLImageElement;
-    img.src = './assets/images/icons/favourite-icon-active.svg';
+  onMouseOverFavourite(event: MouseEvent) {
+    this.filmsService.onMouseOver(event);
   }
 
-  onMouseOut(event: MouseEvent) {
-    const img = event.target as HTMLImageElement;
-    img.src = './assets/images/icons/favourite-icon.svg';
+  onMouseOutFavourite(event: MouseEvent) {
+    this.filmsService.onMouseOut(event);
   }
 
   ngOnDestroy() {

@@ -33,8 +33,8 @@
             *ngIf="isAuthenticated"
             (click)="addToFavourites($event, film)"
             [class.is-hidden]="isFilmInFavourites(film)"
-            (mouseover)="onMouseOver($event)"
-            (mouseout)="onMouseOut($event)"
+            (mouseover)="onMouseOverFavourite($event)"
+            (mouseout)="onMouseOutFavourite($event)"
           >
           <!--Favourite icon active-->
           <img
@@ -42,6 +42,7 @@
             class="category__item-favourite--active"
             *ngIf="isAuthenticated"
             [class.is-hidden]="!isFilmInFavourites(film)"
+            (click)="removeFromFavourites($event, film)"
           >
           <!--Rating-->
           <div class="category__item-rate">

@@ -87,38 +87,28 @@ export class FilmPageComponent implements OnInit, OnDestroy {
     })
   }
 
-  addToFavourites(film) {
-    film.type = this.media_type;
-    const favouriteFilm = { ...film, type: film.type };
-    favouriteFilm.poster_path = `https://image.tmdb.org/t/p/w500/${film.poster_path}`;
-
-    this.filmsService.addToFavourites(favouriteFilm);
-
+  addToFavourites(e, film) {
+    e.stopPropagation();
+    this.filmsService.addToFavourites(e, film, this.media_type);
     this.isFavourite = true;
+  }
 
-    const favouriteItem = document.querySelectorAll(".film__item-favourite");
-    const favouriteItemActive = document.querySelectorAll(".film__item-favourite--active");
-
-    favouriteItem.forEach((item, index) => {
-      if (this.filmData$.value.film.id === film.id) {
-        item.classList.toggle('is-hidden');
-        favouriteItemActive[index].classList.toggle('is-hidden');
-      }
-    });
+  removeFromFavourites(e, film: Film) {
+    e.stopPropagation();
+    this.filmsService.removeFromFavourites(film.id);
+    this.isFavourite = false;
   }
 
   isFilmInFavourites(film) {
     return this.filmsService.getFavouritesFilms().some(f => f.id === film.id);
   }
 
-  onMouseOver(event: MouseEvent) {
-    const img = event.target as HTMLImageElement;
-    img.src = './assets/images/icons/favourite-icon-active.svg';
+  onMouseOverFavourite(event: MouseEvent) {
+    this.filmsService.onMouseOver(event);
   }
 
-  onMouseOut(event: MouseEvent) {
-    const img = event.target as HTMLImageElement;
-    img.src = './assets/images/icons/favourite-icon.svg';
+  onMouseOutFavourite(event: MouseEvent) {
+    this.filmsService.onMouseOut(event);
   }
 
   ngOnDestroy(): void {
