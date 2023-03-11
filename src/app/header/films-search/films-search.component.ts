@@ -36,7 +36,7 @@ export class FilmsSearchComponent implements OnInit, OnDestroy {
   }
 
   search() {
-    if (!/^[a-zA-Z0-9а-яА-Я\s]*$/.test(this.query)) {
+    if (!/^[a-zA-Z0-9а-яА-ЯіІ\s]*$/.test(this.query)) {
       this.isSymbol = true;
       this.films = null;
       return;
