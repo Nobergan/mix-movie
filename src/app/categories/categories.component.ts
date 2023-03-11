@@ -96,12 +96,12 @@ export class CategoriesComponent implements OnInit {
 
   onMouseOver(event: MouseEvent) {
     const img = event.target as HTMLImageElement;
-    img.src = '../../../assets/images/icons/favourite-icon-active.svg';
+    img.src = './assets/images/icons/favourite-icon-active.svg';
   }
 
   onMouseOut(event: MouseEvent) {
     const img = event.target as HTMLImageElement;
-    img.src = '../../../assets/images/icons/favourite-icon.svg';
+    img.src = './assets/images/icons/favourite-icon.svg';
   }
 
   ngOnDestroy() {

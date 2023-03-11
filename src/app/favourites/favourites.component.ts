@@ -36,11 +36,11 @@ export class FavouritesComponent implements OnInit{
 
   onMouseOver(film) {
     const trashIcon = this.el.nativeElement.querySelector(`.category__item-trash[data-id="${film.id}"]`);
-    this.renderer.setAttribute(trashIcon, 'src', '../../../assets/images/icons/icon-trash-red.svg');
+    this.renderer.setAttribute(trashIcon, 'src', './assets/images/icons/icon-trash-red.svg');
   }
 
   onMouseOut(film) {
     const trashIcon = this.el.nativeElement.querySelector(`.category__item-trash[data-id="${film.id}"]`);
-    this.renderer.setAttribute(trashIcon, 'src', '../../../assets/images/icons/icon-trash.svg');
+    this.renderer.setAttribute(trashIcon, 'src', './assets/images/icons/icon-trash.svg');
   }
 }
